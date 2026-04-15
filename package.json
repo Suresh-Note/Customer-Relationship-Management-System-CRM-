@@ -1,0 +1,21 @@
+{
+  "name": "crm-app",
+  "version": "1.0.0",
+  "description": "AstrawinCRM — Full-stack Customer Relationship Management",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -n BE,FE -c cyan,magenta \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm run build",
+    "lint": "concurrently \"cd backend && npm run lint\" \"cd frontend && npm run lint\"",
+    "migrate": "cd backend && npm run migrate",
+    "migrate:status": "cd backend && npm run migrate:status"
+  },
+  "keywords": ["crm", "react", "express", "postgresql"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

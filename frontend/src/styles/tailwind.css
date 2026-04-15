@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-crm-bg text-crm-copy font-sans antialiased;
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-crm-copy-soft transition-all duration-200;
+  }
+  .sidebar-link:hover {
+    @apply bg-crm-primary-light text-crm-primary;
+  }
+  .sidebar-link.active {
+    @apply bg-crm-primary-light text-crm-primary font-bold;
+  }
+  .stat-card {
+    @apply bg-white rounded-2xl p-5 border border-crm-border shadow-card;
+  }
+  .table-header {
+    @apply px-5 py-3 text-left text-[0.7rem] font-bold uppercase tracking-wider text-crm-copy-soft bg-slate-50/60;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.25s ease-out;
+  }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

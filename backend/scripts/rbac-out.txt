@@ -1,0 +1,67 @@
+﻿============================================================
+  RBAC (Role-Based Access Control) DEMO
+  Roles: Admin(4) > Manager(3) > Sales/Dev/Mktg(2) > User(1)
+============================================================
+
+Creating test users...
+
+====== USER (rbac_user@test.com) ======
+  Logged in as Test User (User)
+
+  [OK] GET    Read leads                   => 200 ALLOWED
+  [OK] GET    Read clients                 => 200 ALLOWED
+  [OK] GET    Read invoices                => 200 ALLOWED
+  [X] POST   Create lead                  => 403 DENIED 
+  [X] POST   Create invoice               => 403 DENIED 
+  [X] POST   Create team                  => 403 DENIED 
+  [X] DELETE Delete lead                  => 403 DENIED 
+  [X] DELETE Delete invoice               => 403 DENIED 
+  [X] DELETE Delete team                  => 403 DENIED 
+  [X] PUT    Update other user role       => 403 DENIED 
+
+====== SALES (rbac_sales@test.com) ======
+  Logged in as Test Sales (Sales)
+
+  [OK] GET    Read leads                   => 200 ALLOWED
+  [OK] GET    Read clients                 => 200 ALLOWED
+  [OK] GET    Read invoices                => 200 ALLOWED
+  [OK] POST   Create lead                  => 201 ALLOWED
+  [X] POST   Create invoice               => 403 DENIED 
+  [X] POST   Create team                  => 403 DENIED 
+  [X] DELETE Delete lead                  => 403 DENIED 
+  [X] DELETE Delete invoice               => 403 DENIED 
+  [X] DELETE Delete team                  => 403 DENIED 
+  [X] PUT    Update other user role       => 403 DENIED 
+
+====== MANAGER (rbac_mgr@test.com) ======
+  Logged in as Test Manager (Manager)
+
+  [OK] GET    Read leads                   => 200 ALLOWED
+  [OK] GET    Read clients                 => 200 ALLOWED
+  [OK] GET    Read invoices                => 200 ALLOWED
+  [OK] POST   Create lead                  => 201 ALLOWED
+  [OK] POST   Create invoice               => 201 ALLOWED
+  [OK] POST   Create team                  => 201 ALLOWED
+  [!!] DELETE Delete lead                  => 404 OK(404)
+  [X] DELETE Delete invoice               => 403 DENIED 
+  [X] DELETE Delete team                  => 403 DENIED 
+  [X] PUT    Update other user role       => 403 DENIED 
+
+====== ADMIN (rbac_admin@test.com) ======
+  Logged in as Test Admin (Admin)
+
+  [OK] GET    Read leads                   => 200 ALLOWED
+  [OK] GET    Read clients                 => 200 ALLOWED
+  [OK] GET    Read invoices                => 200 ALLOWED
+  [OK] POST   Create lead                  => 201 ALLOWED
+  [OK] POST   Create invoice               => 201 ALLOWED
+  [OK] POST   Create team                  => 201 ALLOWED
+  [!!] DELETE Delete lead                  => 404 OK(404)
+  [!!] DELETE Delete invoice               => 404 OK(404)
+  [!!] DELETE Delete team                  => 404 OK(404)
+  [OK] PUT    Update other user role       => 200 ALLOWED
+
+Cleaning up test users...
+Done - test data cleaned up.
+
+RBAC demo complete!

@@ -1,0 +1,30 @@
+# ── Dependencies ──────────────────────────────────
+node_modules/
+
+# ── Environment variables (NEVER commit secrets) ──
+.env
+.env.local
+.env.production
+
+# ── Build output ──────────────────────────────────
+frontend/dist/
+
+# ── Logs ──────────────────────────────────────────
+*.log
+npm-debug.log*
+pino-pretty.log
+
+# ── OS files ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE / Editor ──────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Docker ────────────────────────────────────────
+docker-compose.override.yml

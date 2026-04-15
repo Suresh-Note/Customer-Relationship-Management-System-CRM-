@@ -1,0 +1,75 @@
+# ============================================================
+#  AstrawinCRM — Docker Compose (Development)
+#
+#  Start everything:  docker compose up
+#  Stop:              docker compose down
+#  Reset DB:          docker compose down -v
+# ============================================================
+
+services:
+  # ── PostgreSQL ────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: crm-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       CRM
+      POSTGRES_USER:     postgres
+      POSTGRES_PASSWORD: Admin6
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d CRM"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ── Backend API ──────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: crm-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT:               5000
+      NODE_ENV:           development
+      DB_USER:            postgres
+      DB_HOST:            db
+      DB_NAME:            CRM
+      DB_PASSWORD:        Admin6
+      DB_PORT:            5432
+      JWT_SECRET:         nexuscrm_super_secret_jwt_key_change_me_in_production
+      JWT_REFRESH_SECRET: nexuscrm_refresh_secret_jwt_key_change_me_in_production
+      CLIENT_URL:         http://localhost:5173
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/src:/app/src:ro
+      - ./backend/migrations:/app/migrations:ro
+
+  # ── Frontend (Vite dev server) ───────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: crm-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src:ro
+      - ./frontend/index.html:/app/index.html:ro
+
+volumes:
+  pgdata:
