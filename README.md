@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <p align="center">
   <img src="https://img.shields.io/badge/AstrawinCRM-Enterprise%20CRM-6C63FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0xNyAyMXYtMmE0IDQgMCAwIDAtNC00SDVhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iOSIgY3k9IjciIHI9IjQiLz48cGF0aCBkPSJNMjMgMjF2LTJhNCA0IDAgMCAwLTMtMy44NyIvPjxwYXRoIGQ9Ik0xNiAzLjEzYTQgNCAwIDAgMSAwIDcuNzUiLz48L3N2Zz4=" alt="AstrawinCRM"/>
 </p>
@@ -542,9 +542,3 @@ This project is licensed under the **ISC License**. See the [LICENSE](LICENSE) f
 
 ---
 
-<p align="center">
-  Built with ❤️ by the Astrawin Team
-</p>
-=======
-# Customer-Relationship-Management-System-CRM-
->>>>>>> f887412c49961e9d6d32b99bf7108eff6f7d4edb
