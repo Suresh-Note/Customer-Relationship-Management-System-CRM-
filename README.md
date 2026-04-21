@@ -1,6 +1,5 @@
-
 <p align="center">
-  <img src="https://img.shields.io/badge/AstrawinCRM-Enterprise%20CRM-6C63FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0xNyAyMXYtMmE0IDQgMCAwIDAtNC00SDVhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iOSIgY3k9IjciIHI9IjQiLz48cGF0aCBkPSJNMjMgMjF2LTJhNCA0IDAgMCAwLTMtMy44NyIvPjxwYXRoIGQ9Ik0xNiAzLjEzYTQgNCAwIDAgMSAwIDcuNzUiLz48L3N2Zz4=" alt="AstrawinCRM"/>
+  <img src="https://img.shields.io/badge/AstrawinCRM-Enterprise%20CRM-6C63FF?style=for-the-badge" alt="AstrawinCRM"/>
 </p>
 
 <h1 align="center">AstrawinCRM</h1>
@@ -107,12 +106,12 @@ The system supports **role-based access control (RBAC)** with six distinct user 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        CLIENT (Browser)                        │
-│                     React 18 + Vite + Tailwind                 │
+│                        CLIENT (Browser)                         │
+│                     React 18 + Vite + Tailwind                  │
 │              ┌───────────────────────────────────┐              │
-│              │  AuthContext ──► ProtectedRoute    │              │
-│              │  useCrmData  ──► Dashboard / Pages │              │
-│              │  Axios ──────►  Auto Token Refresh │              │
+│              │  AuthContext ──► ProtectedRoute   │              │
+│              │  useCrmData  ──► Dashboard / Pages│              │
+│              │  Axios ──────►  Auto Token Refresh│              │
 │              └───────────────┬───────────────────┘              │
 └──────────────────────────────┼──────────────────────────────────┘
                                │  HTTP (REST + httpOnly cookies)
@@ -120,24 +119,18 @@ The system supports **role-based access control (RBAC)** with six distinct user 
 ┌─────────────────────────────────────────────────────────────────┐
 │                      API SERVER (Express 4)                     │
 │                                                                 │
-│  Request Flow:                                                  │
-│  ┌──────┐  ┌────────┐  ┌──────┐  ┌──────┐  ┌────────────────┐ │
-│  │ CORS │→│ Helmet  │→│ Rate │→│ Auth │→│  Controllers    │ │
-│  │      │  │  + CSP  │  │ Limit│  │ + JWT│  │  + Validation  │ │
-│  └──────┘  └────────┘  └──────┘  └──────┘  └───────┬────────┘ │
-│                                                      │          │
-│  ┌──────────────────┐    ┌───────────────┐           │          │
-│  │  Audit Logger    │◄───│  RBAC Guard   │◄──────────┘          │
-│  └──────────────────┘    └───────────────┘                      │
+│  CORS → Helmet + CSP → Rate Limit → Auth + JWT → Controllers    │
+│                                         │                       │
+│                   Audit Logger ◄── RBAC Guard                   │
 └──────────────────────────────┼──────────────────────────────────┘
                                │  pg (connection pool, max: 20)
                                ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    PostgreSQL 16 (Alpine)                       │
 │                                                                 │
-│  Tables: users · teams · leads · clients · deals · projects    │
+│  Tables: users · teams · leads · clients · deals · projects     │
 │          tasks · invoices · activities · refresh_tokens         │
-│          lead_notes · client_notes · project_handlers          │
+│          lead_notes · client_notes · project_handlers           │
 │          audit_log                                              │
 │                                                                 │
 │  Features: CHECK constraints · ON DELETE cascading              │
@@ -161,8 +154,8 @@ The system supports **role-based access control (RBAC)** with six distinct user 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/crm-app.git
-cd crm-app
+git clone https://github.com/Suresh-Note/Customer-Relationship-Management-System-CRM-.git
+cd Customer-Relationship-Management-System-CRM-
 
 # 2. Install dependencies (root, backend, and frontend)
 npm install
@@ -220,106 +213,45 @@ node backend/scripts/create-admin.js
 ## 📁 Project Structure
 
 ```
-crm-app/
-├── 📄 docker-compose.yml           # Full-stack containerized environment
-├── 📄 package.json                  # Root scripts (dev, build, lint, migrate)
-├── 📄 start-crm.bat                # Windows one-click launcher
-├── 📄 .prettierrc                   # Shared code formatting rules
+AstrawinCRM/
+├── docker-compose.yml              # Full-stack containerized environment
+├── package.json                    # Root scripts (dev, build, lint, migrate)
+├── start-crm.bat                   # Windows one-click launcher
+├── .prettierrc                     # Shared code formatting rules
 │
-├── 🔧 backend/
-│   ├── server.js                    # Entry point (env validation, graceful shutdown)
-│   ├── schema.sql                   # Full database schema reference
-│   ├── Dockerfile                   # Production container image
-│   ├── .env.example                 # Environment variable template
+├── backend/
+│   ├── server.js                   # Entry point (env validation, graceful shutdown)
+│   ├── schema.sql                  # Full database schema reference
+│   ├── Dockerfile                  # Production container image
+│   ├── .env.example                # Environment variable template
 │   │
-│   ├── migrations/                  # Versioned schema changes
-│   │   ├── 001_initial_schema.sql   #   Core tables (users, leads, clients, etc.)
-│   │   ├── 002_lead_notes.sql       #   Lead notes support
-│   │   ├── 003_client_notes.sql     #   Client notes support
-│   │   └── 004_audit_log.sql        #   Audit trail table
-│   │
-│   ├── seeds/                       # Development data
-│   │   ├── seed.sql                 #   Complete dataset (100 clients)
-│   │   ├── seed-100-clients.sql     #   Client-specific seed
-│   │   └── seed-expand-all.sql      #   Expanded cross-module data
-│   │
-│   ├── scripts/                     # Maintenance utilities
-│   │   ├── create-admin.js          #   Create admin user
-│   │   ├── fix-encoding.js          #   Fix UTF-8 encoding issues
-│   │   ├── fix-seed-passwords.js    #   Rehash seed passwords
-│   │   └── test-rbac.js             #   RBAC endpoint audit
+│   ├── migrations/                 # Versioned schema changes
+│   ├── seeds/                      # Development data
+│   ├── scripts/                    # Maintenance utilities
 │   │
 │   └── src/
-│       ├── app.js                   # Express app (middleware stack)
-│       ├── config/
-│       │   ├── db.js                #   PostgreSQL connection pool
-│       │   ├── env.js               #   Startup environment validation
-│       │   ├── logger.js            #   Pino structured logger
-│       │   └── migrate.js           #   Migration runner engine
-│       ├── controllers/             # Business logic (10 modules)
-│       │   ├── auth.controller.js   #   Register, login, refresh, logout
-│       │   ├── leads.controller.js  #   CRUD + convert to client
-│       │   ├── clients.controller.js
-│       │   ├── deals.controller.js
-│       │   ├── projects.controller.js
-│       │   ├── tasks.controller.js
-│       │   ├── invoices.controller.js
-│       │   ├── activities.controller.js
-│       │   ├── teams.controller.js
-│       │   └── users.controller.js
-│       ├── middleware/
-│       │   ├── auth.js              #   JWT verification (cookie + Bearer)
-│       │   ├── rbac.js              #   Role-based access control
-│       │   ├── validate.js          #   Input validation + XSS sanitization
-│       │   ├── audit.js             #   Audit trail logging
-│       │   └── errorHandler.js      #   Centralized error handling
-│       ├── models/                  # Data access layer (8 modules)
-│       └── routes/                  # Express route definitions (10 files)
+│       ├── app.js                  # Express app (middleware stack)
+│       ├── config/                 # DB, env, logger, migration runner
+│       ├── controllers/            # Business logic (10 modules)
+│       ├── middleware/             # Auth, RBAC, validation, audit, errors
+│       ├── models/                 # Data access layer (8 modules)
+│       └── routes/                 # Express route definitions (10 files)
 │
-└── 🎨 frontend/
-    ├── index.html                   # SPA entry point
-    ├── vite.config.js               # Build config + API proxy + code splitting
-    ├── tailwind.config.js           # Design system tokens
-    ├── Dockerfile                   # Container image
+└── frontend/
+    ├── index.html                  # SPA entry point
+    ├── vite.config.js              # Build config + API proxy + code splitting
+    ├── tailwind.config.js          # Design system tokens
+    ├── Dockerfile                  # Container image
     │
     └── src/
-        ├── App.jsx                  # Root component + route definitions
-        ├── main.jsx                 # React DOM entry
-        ├── api/
-        │   └── axios.js             # Axios instance + auto token refresh
-        ├── components/
-        │   ├── layout/              #   App shell (sidebar, header)
-        │   ├── AppSidebar.jsx       #   Navigation sidebar
-        │   ├── Navbar.jsx           #   Top navigation bar
-        │   ├── ProtectedRoute.jsx   #   Auth guard wrapper
-        │   ├── Can.jsx              #   RBAC permission component
-        │   ├── LeadCard.jsx         #   Lead detail card
-        │   └── ResourceWorkspace.jsx #  Generic CRUD workspace
-        ├── context/
-        │   └── AuthContext.jsx      # Auth state + session management
-        ├── hooks/
-        │   ├── useCrmData.js        #   Centralized data fetching
-        │   ├── useAuth.js           #   Auth context shortcut
-        │   └── useIdleTimeout.js    #   Auto-logout on inactivity
-        ├── pages/                   # Page components (12 pages)
-        │   ├── Dashboard.jsx        #   Analytics overview
-        │   ├── Leads.jsx            #   Lead management + conversion
-        │   ├── Clients.jsx          #   Client management
-        │   ├── Deals.jsx            #   Deal pipeline
-        │   ├── Projects.jsx         #   Project management
-        │   ├── Tasks.jsx            #   Task board
-        │   ├── Invoices.jsx         #   Invoice management
-        │   ├── Activities.jsx       #   Activity timeline
-        │   ├── Team.jsx             #   Team management
-        │   └── Login.jsx            #   Authentication page
-        ├── styles/
-        │   ├── main.css             #   Core application styles
-        │   ├── auth.css             #   Login/register styles
-        │   └── tailwind.css         #   Tailwind directives
-        └── utils/
-            ├── authStorage.js       #   Secure session persistence
-            ├── rbac.js              #   Frontend permission checks
-            └── notificationRouting.js # Notification routing logic
+        ├── App.jsx                 # Root component + route definitions
+        ├── api/                    # Axios instance + auto token refresh
+        ├── components/             # Layout, sidebar, RBAC, cards, workspace
+        ├── context/                # AuthContext (session management)
+        ├── hooks/                  # useCrmData, useAuth, useIdleTimeout
+        ├── pages/                  # 12 page components
+        ├── styles/                 # Main, auth, Tailwind CSS
+        └── utils/                  # Auth storage, RBAC, notifications
 ```
 
 ---
@@ -418,11 +350,11 @@ The database consists of **14 tables** with foreign key relationships and CHECK 
 └──────────┘     └─────┬─────┘     └────┬─────┘     └──────────┘
                        │                │
                        │           ┌────▼─────┐     ┌──────────┐
-                       │           │  clients  │────►│  deals   │
+                       │           │ clients  │────►│  deals   │
                        │           └────┬─────┘     └──────────┘
                        │                │
                        │           ┌────▼──────┐    ┌──────────┐
-                       └──────────►│  projects  │───►│invoices  │
+                       └──────────►│ projects  │───►│ invoices │
                                    └────┬──────┘    └──────────┘
                                         │
                                    ┌────▼─────┐
@@ -447,22 +379,6 @@ Run all scripts from the **project root**:
 | `npm run migrate` | Apply pending database migrations |
 | `npm run migrate:status` | Show current migration status |
 | `npm start` | Start backend in production mode |
-
-### Utility Scripts
-
-```bash
-# Create an admin user interactively
-node backend/scripts/create-admin.js
-
-# Fix UTF-8 encoding issues in the database
-node backend/scripts/fix-encoding.js
-
-# Rehash seed data passwords
-node backend/scripts/fix-seed-passwords.js
-
-# Audit RBAC endpoint permissions
-node backend/scripts/test-rbac.js
-```
 
 ---
 
@@ -526,14 +442,6 @@ docker compose down -v
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-### Development Guidelines
-
-- Follow the existing ESLint configuration for both backend and frontend
-- Write parameterized queries — never concatenate user input into SQL
-- Use the `validate()` helper for all input validation
-- Apply `rbac()` middleware on routes that require elevated permissions
-- Run `npm run lint` before committing
-
 ---
 
 ## 📄 License
@@ -541,4 +449,15 @@ docker compose down -v
 This project is licensed under the **ISC License**. See the [LICENSE](LICENSE) file for details.
 
 ---
+
+## 👨‍💻 Author
+
+**Suresh Kanchamreddy**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Suresh--Note-181717?style=flat-square&logo=github)](https://github.com/Suresh-Note)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/suresh-kanchamreddy)
+
+---
+
+<p align="center">Built with ❤️ by Suresh Kanchamreddy</p>
 
