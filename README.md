@@ -47,6 +47,76 @@ The system supports **role-based access control (RBAC)** with six distinct user 
 
 ---
 
+## 📸 Application Screenshots
+
+### 🔐 Login Page
+Secure authentication with JWT and httpOnly cookies.
+
+<img width="1083" height="907" alt="Login Page" src="https://github.com/user-attachments/assets/54ce9876-642f-4631-8a85-59d075606818" />
+
+
+### 📊 Main Dashboard
+Real-time KPIs, pipeline visualization, recent activities, and project overview at a glance.
+
+<img width="1903" height="928" alt="Main DashBoard" src="https://github.com/user-attachments/assets/e2699358-7b53-4a09-8e27-ba8c90af02e9" />
+
+
+### 👥 Leads Management
+Track active leads, categorize by temperature (Hot / Warm / Cold / New), and convert qualified leads to clients.
+
+<img width="1895" height="929" alt="Leads" src="https://github.com/user-attachments/assets/34147e17-fd87-4d7e-aa71-e1b774152529" />
+
+
+### 🏢 Clients
+Complete client portfolio with status tracking, priority levels, and contact details.
+
+<img width="1898" height="930" alt="Clients" src="https://github.com/user-attachments/assets/1a7446d9-0c49-44b1-b1f1-c413c67b0ea0" />
+
+
+### 💼 Deals Pipeline (Kanban View)
+Visualize deals across stages — Prospecting → Qualified → Proposal → Negotiation → Closed Won.
+
+<img width="1903" height="934" alt="Deals" src="https://github.com/user-attachments/assets/6f3e1032-b709-4b62-b1fb-b0c38d93587b" />
+
+
+### 📁 Projects
+Manage project lifecycle with multi-handler assignment and status tracking.
+<img width="1896" height="930" alt="Projects" src="https://github.com/user-attachments/assets/8adafe5a-30fa-4288-8cbe-78b31d95df04" />
+
+
+### 📋 Project Details Modal
+Drill-down view showing client, service type, handlers, tasks, and invoices.
+
+<img width="1883" height="922" alt="Project edit" src="https://github.com/user-attachments/assets/bc3024a0-5299-4630-aa33-a8939b23604d" />
+
+
+### ✅ Tasks Board
+Task management with priority (Low / Medium / High), status tracking, and deadlines.
+
+<img width="1882" height="931" alt="Tasks" src="https://github.com/user-attachments/assets/59b73c80-d50f-46ea-b299-51480e1b6558" />
+
+
+### 📞 Activities Timeline
+Log calls, emails, meetings, notes, and tasks against leads with a complete breakdown.
+
+<img width="1907" height="930" alt="Activites" src="https://github.com/user-attachments/assets/d6115b38-6a21-4f2a-84cd-aeff22cc4f86" />
+
+
+### 💰 Invoices
+Financial tracking with collection progress, pending / paid / overdue status.
+
+<img width="1896" height="927" alt="Invoices" src="https://github.com/user-attachments/assets/1bcb3bb4-2cd1-476d-a815-1fdc5f949faa" />
+
+
+### 👨‍💻 Team Management
+Organize teams, manage members, and track departmental structure.
+
+<img width="1908" height="923" alt="Team" src="https://github.com/user-attachments/assets/4042a4d1-cb0f-4f00-8146-e03dd6136ae2" />
+
+
+---
+
+
 ## ✨ Key Features
 
 ### 🎯 Sales Pipeline Management
